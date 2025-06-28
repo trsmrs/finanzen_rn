@@ -1,45 +1,62 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { colors } from "@/constants/Colors";
+import { Feather, MaterialIcons } from '@expo/vector-icons';
+import { Tabs } from "expo-router";
+import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
 
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
+export default function TabsLayout() {
+    const { height: screenHeight } = Dimensions.get('window');
+    
+
+    return (
+        <Tabs
+            screenOptions={{
+                headerStyle: { backgroundColor: colors.primary },
+                headerTintColor: colors.primaryContrast,
+                headerTitleAlign: 'center',
+                tabBarActiveTintColor: colors.primary,
+                tabBarInactiveTintColor: colors.inactive,
+                tabBarStyle: {
+                    height: screenHeight * 0.1 + 10,
+                    paddingTop: 5,
+                    backgroundColor: colors.background
+                },
+                tabBarButton: (props) => <TouchableOpacity  {...props} activeOpacity={0.8}/>
+            }}
+        >
+            <Tabs.Screen name="index" options={{
+                title: "Transações",
+                tabBarIcon: ({ color }) => (
+                    <MaterialIcons name="attach-money" size={28} color={color} />)
+            }} />
+
+            <Tabs.Screen name="add-transactions" options={{
+                title: "Adicionar Transação",
+                tabBarLabel: "",
+                tabBarIcon: () => (
+                    <View style={styles.addButton}>
+                        <MaterialIcons name="add" size={40} color={colors.primaryContrast} />
+                    </View>
+                )
+            }} />
+
+            <Tabs.Screen name="summary" options={{
+                title: "Resumo",
+                tabBarIcon: ({ color }) => (<Feather name="pie-chart" size={28} color={color} />)
+            }} />
+        </Tabs>
+    )
 }
+
+const styles = StyleSheet.create({
+    addButton: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: 64,
+        width: 64,
+        borderRadius: 32,
+        backgroundColor: colors.primary
+    }
+})

@@ -1,26 +1,19 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
+export const colors = {
+  primary: "#fa7f4b",          // Cor principal (laranja vibrante)
+  primaryContrast: "#FFFFFF", // Contraste para botões/textos sobre o primário
+  inactive: "#c2bcb9",         // Cinza claro neutro para elementos inativos
+  background: "#fff8f5",       // Fundo claro suave, derivado do laranja
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+  // Categorias (cores complementares ou análogas ao laranja)
+  categoryIncome: "#faaa94",   // Laranja mais claro (receitas)
+  categoryFood: "#e56f33",     // Laranja queimado (alimentos)
+  categoryHouse: "#d96c49",    // Terracota (casa)
+  categoryEducation: "#f9ae79",// Laranja pastel (educação)
+  categoryTravel: "#ffb28a",   // Laranja suave puxando pro salmão (viagens)
 
-export const Colors = {
-  light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
-  },
-};
+  primaryText: "#5a3c2d",      // Marrom escuro para texto (derivado do laranja)
+  secondaryText: "#a88577",    // Tom suave para texto secundário
+
+  positiveText: "#4caf50",     // Verde (mantido para mensagens positivas)
+  negativesText: "#e53935"     // Vermelho forte (mantido para mensagens negativas)
+}
